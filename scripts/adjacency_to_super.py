@@ -31,8 +31,8 @@ def generate_opp_approx(i, j, domains, generate, L, N, K):
     """
     if generate:
         # There is a good chance this is backwards because I can't remember the order of adjacency matrices.
-        initial_domain  = domains[i]
-        final_domain = domains[j]
+        final_domain = domains[i]
+        initial_domain  = domains[j]
 
         L_hat_T = cheb_op_ap(L, K, N, initial_domain=initial_domain, final_domain=final_domain)
         L_hat = L_hat_T.T
