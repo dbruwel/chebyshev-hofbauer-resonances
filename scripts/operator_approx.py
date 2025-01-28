@@ -18,6 +18,8 @@ def cheb_op_ap(L, K, N, initial_domain = (-1, 1), final_domain = (-1, 1)):
         The order of the Chebyshev polynomials to use.
     initial_domain : tuple, optional
         The initial domain of the operator. The default is (-1, 1).
+    final_domain : tuple, optional
+        The final domain of the operator. The default is (-1, 1).
     Returns
     -------
     L_hat : ndarray
