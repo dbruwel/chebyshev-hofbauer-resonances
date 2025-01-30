@@ -135,10 +135,15 @@ def create_digraph(a, limit):
     limit: int
         The recursion limit when creating the directed graph.
         Corresponds to the number of intervals visited.
+
+    Returns
+    -------
+    G : DiGraph
+        networkx object that stores the infomration about the Hofbauer extension as nodes and labelled, directed edges
     '''
-    global G
     G = nx.DiGraph()
     recursive_create_node(G, 0, limit, [0.0,1.0], a)
+    return G
     
 
 def recursive_create_node(G, counter, limit, interval, a):
@@ -199,8 +204,7 @@ def create_adjacency_matricies(a, limit):
     df_right : Pandas DataFRame
         The labelled adjacncy matrix of the Digraph including edges for the right branch only.
     '''
-    G.clear()
-    create_digraph(a, limit)
+    G = create_digraph(a, limit)
 
     nodes_list = list(G.nodes)
     if len(nodes_list) >= 2:
@@ -240,4 +244,10 @@ def create_adjacency_matricies(a, limit):
             df_left.at[node2, node1] = 1
             df_right.at[node2, node1] = 1
 
-    return df, df_left, df_right
+    
+
+    return [nodes_list, df.values, df_left.values, df_right.values]
+
+
+matricies = create_adjacency_matricies(1.8, 10)
+print(matricies[1])
