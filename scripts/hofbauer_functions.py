@@ -197,11 +197,13 @@ def create_adjacency_matricies(a, limit):
 
     Returns
     -------
-    df : Pandas DataFrame
+    nodes_list : list of tuples
+        The nodes of the graph, the labels of the columns/rows in the adjacency matricies
+    df : np.array
         The labelled adjacency matrix of the DiGraph including edges for both branches.
-    df_left : Pandas DataFrame
+    df_left : np.array
         The labelled adjacency matrix of the Digraph including edges for the left branch only.
-    df_right : Pandas DataFRame
+    df_right : np.array
         The labelled adjacncy matrix of the Digraph including edges for the right branch only.
     '''
     G = create_digraph(a, limit)
@@ -249,5 +251,7 @@ def create_adjacency_matricies(a, limit):
     return [nodes_list, df.values, df_left.values, df_right.values]
 
 
+
+### Example execution
 matricies = create_adjacency_matricies(1.8, 10)
 print(matricies[1])
