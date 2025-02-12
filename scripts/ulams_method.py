@@ -7,7 +7,7 @@ def ulams_method(N, M, f):
     L = np.zeros((N, N))
 
     for i in range(N):
-        x_samples = np.random.uniform(bins[i], bins[i+1], M)
+        x_samples = np.linspace(bins[i], bins[i+1], M)
         
         x_next = f(x_samples)
         
