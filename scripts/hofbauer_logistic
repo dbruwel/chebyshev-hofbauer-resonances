@@ -118,16 +118,16 @@ def recursive_create_node(G, counter, limit, interval, a):
         if r_l != [None]: # Within domain of left branch
             if r_l_tuple not in G.nodes: 
                 G.add_node(r_l_tuple) # Create node for the range of left branch for this domain
+                recursive_create_node(G, counter+1, limit, r_l, a) # Recursive call with this range as new interval
             if (interval_tuple, r_l_tuple) not in G.edges:
                 G.add_edge(interval_tuple, r_l_tuple, label = 'L') # Create edge with left label
-            recursive_create_node(G, counter+1, limit, r_l, a) # Recursive call with this range as new interval
             
         if r_r != [None]: # Within domain of right branch
             if r_r_tuple not in G.nodes:
                 G.add_node(r_r_tuple) # Create node for the range of right branch for this domain
+                recursive_create_node(G, counter+1, limit, r_r, a) # Recursive call with this range as new interval
             if (interval_tuple, r_r_tuple) not in G.edges:
                 G.add_edge(interval_tuple, r_r_tuple, label = 'R')  # Create edge with right label
-            recursive_create_node(G, counter+1, limit, r_r, a) # Recursive call with this range as new interval
 
 def create_adjacency_matricies(a, limit):
     '''
@@ -222,4 +222,4 @@ def plot_digraph(a, limit):
     plt.title(f"DiGraph with a = {a}")
     plt.show()
 
-plot_digraph(3.6, 10)
+plot_digraph(3.6, 50)

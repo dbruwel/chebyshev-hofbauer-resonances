@@ -272,7 +272,7 @@ def plot_digraph(a, limit):
 
 ### Example execution
 if __name__ == '__main__':
-    matricies = create_adjacency_matricies(1.8, 50)
+    matricies = create_adjacency_matricies(1.8, 20)
     print(matricies[1])
 
-#plot_digraph(1.8, 50)
+plot_digraph(1.8, 50)
