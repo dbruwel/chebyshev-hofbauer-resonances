@@ -253,5 +253,6 @@ def create_adjacency_matricies(a, limit):
 
 
 ### Example execution
-matricies = create_adjacency_matricies(1.8, 10)
-print(matricies[1])
+if __name__ == '__main__':
+    matricies = create_adjacency_matricies(1.8, 10)
+    print(matricies[1])
