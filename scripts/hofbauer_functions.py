@@ -274,4 +274,4 @@ def plot_digraph(a, limit):
 matricies = create_adjacency_matricies(1.8, 50)
 print(matricies[1])
 
-plot_digraph(1.8, 50)
+#plot_digraph(1.8, 50)
