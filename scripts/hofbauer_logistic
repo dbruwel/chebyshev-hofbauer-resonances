@@ -7,112 +7,63 @@ from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import eigs
 
 
-def f(a, x):
-    '''
-    Our 'tent map' for the dynamical system.
 
+def logistic(a, x):
+    '''
+    The logistic map function.
+    
     Parameters
     ----------
     a : float
-        The value of the variable in the tent map.
-        Can be values between 1 and 2 only.
+        The value of the coefficient in the logistic map.
     x : float
-        The current point in the domain of the tent map.
+        The current point in the domain of the logistic map.
     
     Returns
     -------
-    The value of the tent map for specified a and x.
+    The value of the logistic map for specified a and x.
     '''
-    return round(a * np.min([x, 1-x]), 5)
-
-
+    return round(a * x * (1 - x), 8)
 
 def f_L(a, x):
     '''
-    The left branch of the tent map.
-
-    Parameters
-    ----------
-    a : float
-        The value of the variable in the tent map.
-        Can be values between 1 and 2 only.
-    x : float
-        The current point in the domain of the tent map.
-
-    Returns
-    -------
-    The value of the left branch of the tent map for specified a and x.
+    The left branch of the logistic map.
     '''
     c_0 = 0.5
-
-    if x >= 0 and x <= c_0:
-        return round(a * x, 8)
+    if 0 <= x <= c_0:
+        return logistic(a, x)
     else:
         return [None]
-
 
 def f_R(a, x):
     '''
-    The right branch of the tent map.
-
-    Parameters
-    ----------
-    a : float
-        The value of the variable in the tent map.
-        Can be values between 1 and 2 only.
-    x : float
-        The current point in the domain of the tent map.
-
-    Returns
-    -------
-    The value of the left branch of the tent map for specified a and x.
+    The right branch of the logistic map.
     '''
     c_0 = 0.5
-
-    if x >= c_0 and x <= 1:
-        return round(a * (1-x), 8)
+    if c_0 <= x <= 1:
+        return logistic(a, x)
     else:
         return [None]
-    
 
 def range_f_L(a, interval):
     '''
-    Finds the range of values produced by the left branch of the tent map on a given interval.
-    NOTE: Finds the range by checking the start and end values of inputted interval.
-
-    Parameters
-    ----------
-    a : float
-        The value of the variable in the tent map.
-        Can be values between 1 and 2 only.
-    interval : list
-        The domain across which to find the range of the branch. 
+    Finds the range of values for the left branch of the logistic map on a given interval.
     '''
     c_0 = 0.5
-
+    
     if interval[0] > c_0:
         return [None]
     if interval[1] > c_0:
         return [f_L(a, interval[0]), f_L(a, c_0)]
     else:
         return [f_L(a, interval[0]), f_L(a, interval[1])]
-    
 
 def range_f_R(a, interval):
     '''
-    Finds the range of values produced by the right branch of the tent map on a given interval.
-    NOTE: Finds the range by checking the start and end values of inputted interval.
-
-    Parameters
-    ----------
-    a : float
-        The value of the variable in the tent map.
-        Can be values between 1 and 2 only.
-    interval : list
-        The domain across which to find the range of the branch. 
+    Finds the range of values for the right branch of the logistic map on a given interval.
     '''
     c_0 = 0.5
-
+    
     if interval[1] < c_0:
         return [None]
     if interval[0] < c_0:
@@ -120,9 +71,6 @@ def range_f_R(a, interval):
     else:
         return sorted([f_R(a, interval[0]), f_R(a, interval[1])])
     
-
-
-
 def create_digraph(a, limit):
     '''
     Creates and stores a directed graph holding information about Hofbauer extension.
@@ -170,16 +118,16 @@ def recursive_create_node(G, counter, limit, interval, a):
         if r_l != [None]: # Within domain of left branch
             if r_l_tuple not in G.nodes: 
                 G.add_node(r_l_tuple) # Create node for the range of left branch for this domain
-                recursive_create_node(G, counter+1, limit, r_l, a) # Recursive call with this range as new interval
             if (interval_tuple, r_l_tuple) not in G.edges:
                 G.add_edge(interval_tuple, r_l_tuple, label = 'L') # Create edge with left label
+            recursive_create_node(G, counter+1, limit, r_l, a) # Recursive call with this range as new interval
             
         if r_r != [None]: # Within domain of right branch
             if r_r_tuple not in G.nodes:
                 G.add_node(r_r_tuple) # Create node for the range of right branch for this domain
-                recursive_create_node(G, counter+1, limit, r_r, a) # Recursive call with this range as new interval
             if (interval_tuple, r_r_tuple) not in G.edges:
                 G.add_edge(interval_tuple, r_r_tuple, label = 'R')  # Create edge with right label
+            recursive_create_node(G, counter+1, limit, r_r, a) # Recursive call with this range as new interval
 
 def create_adjacency_matricies(a, limit):
     '''
@@ -251,6 +199,11 @@ def create_adjacency_matricies(a, limit):
     return [nodes_list, df.values, df_left.values, df_right.values]
 
 
+### Example execution
+matricies = create_adjacency_matricies(1.8, 10)
+print(matricies[1])
+
+
 def plot_digraph(a, limit):
     G = create_digraph(a, limit)
 
@@ -269,9 +222,4 @@ def plot_digraph(a, limit):
     plt.title(f"DiGraph with a = {a}")
     plt.show()
 
-
-### Example execution
-matricies = create_adjacency_matricies(1.8, 50)
-print(matricies[1])
-
-plot_digraph(1.8, 50)
+plot_digraph(3.6, 10)
