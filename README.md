@@ -1,6 +1,9 @@
 # Computing Resonances of Chaotic Systems via Chebyshev Polynomials and Hofbauer Extensions
 
 This project was undertaken during the summer of 2024/2025 under the supervision of Dr. Caroline Wormell at the University of Sydney.
+It was a short research project focused primarily on the conceptual development of the technique. This repository is not a polished Python package, nor is the accompanying paper complete or peer-reviewed. It is simply a collection of exploratory ideas, many of which remain unrefined or incomplete. The code is provided as part of the development process and is not intended for reuse by others.
+
+This project was completed by myself (Daniel Bruwel), and Owen Marscgner, and Adrian Zhao.
 
 ## Project Overview
 
