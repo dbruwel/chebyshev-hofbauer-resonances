@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.polynomial.chebyshev import chebfit
 from scipy.fftpack import dct
 from scipy.special import chebyt
-from numpy.polynomial.chebyshev import chebfit
+
 
 def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1), depth=1):
     """
@@ -28,27 +29,26 @@ def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1), depth=1):
     L_hat : ndarray
         The matrix approximation of the operator, refined based on depth.
     """
-    assert N == K, 'currently only works for K = N'
+    assert N == K, "currently only works for K = N"
 
     k = np.arange(0, K)
-    theta = np.pi*(2*k+1)/(2*K)
+    theta = np.pi * (2 * k + 1) / (2 * K)
     x = np.cos(theta)
     x = linear_map(x, final_domain)
 
     y = np.array([L(domain_restricted_chebyt(n, initial_domain))(x) for n in range(N)])
 
-    L_hat = dct(y, type=2, axis=1)/y.shape[1]
-    L_hat[:, 0] = L_hat[:, 0]/2
+    L_hat = dct(y, type=2, axis=1) / y.shape[1]
+    L_hat[:, 0] = L_hat[:, 0] / 2
 
     # Apply depth refinement (for example, running refinement iterations here)
     if depth > 1:
         for _ in range(depth - 1):
             # Recalculate approximation by applying some refinement process (example: further smoothing)
-            L_hat = dct(L_hat, type=2, axis=1)/L_hat.shape[1]
-            L_hat[:, 0] = L_hat[:, 0]/2
+            L_hat = dct(L_hat, type=2, axis=1) / L_hat.shape[1]
+            L_hat[:, 0] = L_hat[:, 0] / 2
 
     return L_hat
-
 
 
 def linear_map(values, domain):
@@ -77,6 +77,7 @@ def linear_map(values, domain):
     a, b = domain
     return a + (values + 1) * (b - a) / 2
 
+
 def inverse_linear_map(values, domain):
     """
     Linearly map values from the domain [a, b] to the domain [-1, 1].
@@ -103,6 +104,7 @@ def inverse_linear_map(values, domain):
     a, b = domain
     return 2 * (values - a) / (b - a) - 1
 
+
 def domain_restricted_chebyt(n, domain):
     """
     Return the Chebyshev polynomial of the first kind of degree n, restricted to the domain [a, b].
@@ -127,7 +129,8 @@ def domain_restricted_chebyt(n, domain):
     """
     return lambda x: chebyt(n)(inverse_linear_map(x, domain))
 
-def restircted_chebfit(f, degree = 10, points = 100, domain = (-1, 1)):
+
+def restircted_chebfit(f, degree=10, points=100, domain=(-1, 1)):
     """
     Return the Chebyshev coefficients of the best fit polynomial of degree degree to the function f, restricted to the domain domain.
 
