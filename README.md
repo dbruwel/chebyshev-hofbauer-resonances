@@ -25,13 +25,40 @@ This project develops numerical techniques for computing the spectrum of $\mathc
 
 ## Installation
 
-Clone the repository and install in editable mode:
+First, clone the repository and navigate into the directory:
 
 ```bash
 git clone https://github.com/dbruwel/chebyshev-hofbauer-resonances.git
 cd chebyshev-hofbauer-resonances
+```
+
+You can install the package using either pip or Poetry. Poetry is recommended for more stable dependency management.
+
+**Option 1: Using pip**
+
+You can install the package directly using pip. Use the -e flag for an "editable" install, which is useful for development.
+
+```bash
+# Standard install
+pip install .
+
+# Or, for an editable install
 pip install -e .
 ```
+
+**Option 2: Using Poetry (Recommended)**
+1. **Install Poetry** (if you don't already have it):
+```bash
+pip install poetry
+```
+2. **Install the package and dependencies:**
+```bash
+poetry install
+```
+
+Poetry will automatically install the project into a virtual environment.
+* **Using with conda:** If you have an active conda environment, Poetry will detect it and install the dependencies into that environment. This is the recommended approach.
+* **Without conda:** If you are not using conda, Poetry will create and manage its own separate virtual environment.
 
 ---
 
@@ -68,9 +95,3 @@ from chebyshev_hofbauer_resonances.operator_approx import cheb_op_ap
 ```
 
 More detailed examples can be found in the `notebooks/` directory.
-
----
-
-## License
-
-MIT License. See `LICENSE` for details.
