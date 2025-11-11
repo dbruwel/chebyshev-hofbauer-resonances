@@ -1,17 +1,21 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "chebyshev_hofbauer_resonances"
-version = "0.2"
-dependencies = [
-    "matplotlib==3.10.0",
-    "networkx==3.4.2",
-    "numpy<2",
-    "pandas==2.2.3",
-    "scipy==1.15.1"
-]
+version = "0.3.0"
+description = ""
+authors = ["Daniel Bruwel"]
+readme = "README.md"
+packages = [{include = "chebyshev_hofbauer_resonances", from = "src"}]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.poetry.dependencies]
+python = "^3.11"
+matplotlib = "==3.10.0"
+networkx = "==3.4.2"
+numpy = "<2"
+pandas = "==2.2.3"
+scipy = "==1.15.1"
+ipykernel = "^7.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
