@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+"""
+Old code repeated.
+"""
+
 
 def ulams_method(N, M, f):
     """
