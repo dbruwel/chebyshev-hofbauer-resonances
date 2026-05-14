@@ -16,3 +16,17 @@ I think f is going to need to take in the "pieces" that the function is defined 
 **Idea:**
  - **Chebyshev polynomials:** for any function $f$, we can write it as an expansion of Chebyshev polynomials, that is $f=a_0T_0(x)+a_1T_1(x)+...$. For some operator $L$, we can consider $Lf=a_0LT_0(x)+a_1LT_1(x)+...$. This means we only need to understand how $L$ acts on $T_n(x)$. We can further expand $LT_j(x)$ in terms of Chebyshev polynomials. We can write $\hat{L}_{ij}$ for the $i$th coefficient of $LT_j(x). Hence we can consider $Lf\approx \hat{L}\hat{f}$. We can further truncate after some number of Chebyshev terms. This gives us a way of approximating an operator by simply considering how it acts on the Chebyshev terms. Now suppose that $Lf=\lambda f$, i.e. $\lambda$ is an eigenvalue. We'd also have that $\lambda$ is "close" to an eigenvalue of $\hat{L}$. So the spectrum of $\hat{L}$ is an approximation for the spectrum of $L$.
 
+### Maps to try
+- Tent map
+- Perturbed tent map
+- [W-maps](https://www.cambridge.org/core/journals/ergodic-theory-and-dynamical-systems/article/abs/family-of-piecewise-expanding-maps-having-singular-measure-as-a-limit-of-acims/F0424E973E837511FB544110E508EA55)
+- [Double tent map](https://iopscience.iop.org/article/10.1088/1361-6544/abb5de/pdf?casa_token=YxX_O2JGaOkAAAAA:DJgcTkSo-4jYWxrTAI0pUYfoOOZ11HVh-RhNGIN8SS7uFj3pBzA0ynicEzyjO5IuzVVanj1pMY-NC3mvUwS6TH-wIA)
+$$
+f(x) =
+\begin{cases}
+ax, & x < 0.5 \\
+a(1-x), & 0.5 < x < 1 \\
+2-a(x-1), & 1 < x < 1.5 \\
+2-a(2-x), & 1.5 < x < 2
+\end{cases}
+$$

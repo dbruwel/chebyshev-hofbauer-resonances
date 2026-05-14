@@ -14,6 +14,7 @@ numpy = "<2"
 pandas = "==2.2.3"
 scipy = "==1.15.1"
 ipykernel = "^7.1.0"
+pyperf = "^2.10.0"
 
 
 [build-system]

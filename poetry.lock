@@ -1191,6 +1191,24 @@ files = [
 diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
+name = "pyperf"
+version = "2.10.0"
+description = "Python module to run and analyze benchmarks"
+category = "main"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "pyperf-2.10.0-py3-none-any.whl", hash = "sha256:79196bc4a11e3c926dd4c6b14c80136c6b37f884fe913cbc57037f37636e9841"},
+    {file = "pyperf-2.10.0.tar.gz", hash = "sha256:dd93ccfda79214725293e95f1fa6e00cb4a64adcf1326039486d4e1f91caaa62"},
+]
+
+[package.dependencies]
+psutil = ">=5.9.0"
+
+[package.extras]
+dev = ["tox"]
+
+[[package]]
 name = "python-dateutil"
 version = "2.9.0.post0"
 description = "Extensions to the standard Python datetime module"
@@ -1489,4 +1507,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "ff6cbd1df5d771caecd98dca1e5452d71cecf4c32908581a22b187747a85a488"
+content-hash = "a03ac3c18b7935b3740cbaad2da5b2c1f761b32deabf3623f7b9d1ccee25181c"

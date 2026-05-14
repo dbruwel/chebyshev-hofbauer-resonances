@@ -6,7 +6,6 @@ from chebyshev_hofbauer_resonances.general_tent_map.adjacency_to_super import (
 from chebyshev_hofbauer_resonances.general_tent_map.hofbauer_tower import (
     create_adjacency_matricies,
 )
-
 from chebyshev_hofbauer_resonances.general_tent_map.ulams_method import ulams_method
 
 
@@ -28,8 +27,9 @@ def construct_transfer_operators(inverses, derivatives):
     """
 
     return [
-        lambda phi, i=i: lambda x: phi(inverses[i](x))
-        / abs(derivatives[i](inverses[i](x)))
+        lambda phi, i=i: (
+            lambda x: phi(inverses[i](x)) / abs(derivatives[i](inverses[i](x)))
+        )
         for i in range(len(inverses))
     ]
 
