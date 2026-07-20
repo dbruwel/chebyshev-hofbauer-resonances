@@ -27,25 +27,31 @@ def a_map(eps):
     return function_domains, functions, inverses, derivatives
 
 
-def get_lam2(alpha):
-    function_domains, functions, inverses, derivatives = a_map(alpha)
+def get_lam2(eps):
+    function_domains, functions, inverses, derivatives = a_map(eps)
 
-    super_adjacency = approx_super_adjacency(
-        function_domains,
-        functions,
-        inverses,
-        derivatives,
-        N=50,
-        K=50,
-        depth=100,
-    )
+    try:
+        super_adjacency = approx_super_adjacency(
+            function_domains,
+            functions,
+            inverses,
+            derivatives,
+            N=50,
+            K=50,
+            depth=100,
+        )
 
-    sparse_adj = sp.csr_matrix(super_adjacency)
-    evals_super_adj = spla.eigs(sparse_adj, k=2, which="LM", return_eigenvectors=False)
-    evals_super_adj = evals_super_adj[np.argsort(-np.abs(evals_super_adj))]
+        sparse_adj = sp.csr_matrix(super_adjacency)
+        evals_super_adj = spla.eigs(
+            sparse_adj, k=2, which="LM", return_eigenvectors=False
+        )
+        evals_super_adj = evals_super_adj[np.argsort(-np.abs(evals_super_adj))]
+        lam2 = evals_super_adj[1]
+        return np.abs(lam2)
 
-    lam2 = evals_super_adj[1]
-    return np.abs(lam2)
+    except Exception:
+        print(f"Failed for epsilon: {eps}")
+        return 0
 
 
 if __name__ == "__main__":
