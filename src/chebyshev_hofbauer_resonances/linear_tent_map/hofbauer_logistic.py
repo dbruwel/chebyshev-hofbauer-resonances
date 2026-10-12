@@ -1,10 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-import numpy as np
 import pandas as pd
-from numpy.linalg import eig
-from scipy.sparse import csr_matrix
-from scipy.sparse.linalg import eigs
 
 
 def logistic(a, x):
@@ -235,7 +231,9 @@ def plot_digraph(a, limit):
         (
             "red"
             if attr.get("label") == "R"
-            else "green" if attr.get("label") == "L" else "blue"
+            else "green"
+            if attr.get("label") == "L"
+            else "blue"
         )
         for u, v, attr in G.edges(data=True)
     ]
@@ -251,7 +249,7 @@ def plot_digraph(a, limit):
         font_size=10,
         font_weight="bold",
     )
-    edge_labels = nx.get_edge_attributes(G, "label")  # Extract edge labels
+    # edge_labels = nx.get_edge_attributes(G, "label")  # Extract edge labels
 
     plt.title(f"DiGraph with a = {a}")
     plt.show()

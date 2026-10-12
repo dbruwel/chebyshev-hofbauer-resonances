@@ -49,7 +49,7 @@ def get_lam2(eps):
         lam2 = evals_super_adj[1]
         return np.abs(lam2)
 
-    except Exception:
+    except Exception:  # noqa: BLE001
         print(f"Failed for epsilon: {eps}")
         return 0
 
@@ -59,13 +59,14 @@ if __name__ == "__main__":
     epss = np.linspace(0, 0.75, 750_001)
 
     NUM_CPUS = 50
-
-    ress = []
-
     with concurrent.futures.ProcessPoolExecutor(max_workers=NUM_CPUS) as executor:
-        results_generator = executor.map(get_lam2, epss)
-        for res in tqdm(results_generator, total=len(epss), desc="Processing Epsilons"):
-            ress.append(res)
+        ress = list(
+            tqdm(
+                executor.map(get_lam2, epss),
+                total=len(epss),
+                desc="Processing Epsilons",
+            )
+        )
 
     df = pd.DataFrame(ress, index=epss, columns=["lam_2"])
     df.to_csv("res.csv")
