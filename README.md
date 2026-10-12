@@ -1,10 +1,10 @@
 # Computing Resonances of Chaotic Systems via Chebyshev Polynomials and Hofbauer Extensions
 
-> **Note:** This repository is a clone of the active working project, shared for the purposes of the Dennison scholarship. It reflects the state of the work at the time of submission and is not the finished product.
+> **Note:** This repository is a clone of the active working project, shared for the purposes of the Denison scholarship. It reflects the state of the work at the time of submission and is not the finished product.
 
 This project began as a summer research project in 2024/2025 at the University of Sydney, completed by Daniel Bruwel, Owen Marschner, and Adrian Zhao under the supervision of Dr. Caroline Wormell. That initial project focused primarily on the conceptual development of the technique for the linear tent map.
 
-**Ongoing work:** Daniel and Caroline are now extending this work to general tent maps. This repository therefore contains both the original summer project code and work-in-progress code from the extension. The preliminary report under `papers/preliminary_report/` was prepared in fulfilment of the Dennison scholarship requirements; it is not a complete or peer-reviewed paper. A more complete write-up will be produced as part of the extended work.
+**Ongoing work:** Daniel and Caroline are now extending this work to general tent maps. This repository therefore contains both the original summer project code and work-in-progress code from the extension. The preliminary report under `papers/preliminary_report/` was prepared in fulfilment of the Denison scholarship requirements; it is not a complete or peer-reviewed paper. A more complete write-up will be produced as part of the extended work.
 
 This repository is not a polished Python package. Much of the code is exploratory, some ideas remain unrefined or incomplete, and it is not intended for reuse by others.
 
@@ -77,7 +77,7 @@ chebyshev-hofbauer-resonances/
 │   └── scripts/
 │
 ├── papers/
-│   └── preliminary_report/   # Dennison scholarship report, figures
+│   └── preliminary_report/   # Denison scholarship report, figures
 │       ├── main.pdf
 │       └── ...
 │
