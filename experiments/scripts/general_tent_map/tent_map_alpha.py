@@ -44,7 +44,7 @@ if __name__ == "__main__":
     lam2s = []
     alphas = np.linspace(1.4, 2, 600_001)
 
-    NUM_CPUS = 6
+    NUM_CPUS = 50
 
     ress = []
 

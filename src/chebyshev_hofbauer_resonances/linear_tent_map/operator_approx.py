@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from numpy.polynomial.chebyshev import chebfit
 from scipy.fftpack import dct
