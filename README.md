@@ -1,11 +1,12 @@
 # Computing Resonances of Chaotic Systems via Chebyshev Polynomials and Hofbauer Extensions
 
-This project was undertaken during the summer of 2024/2025 under the supervision of Dr. Caroline Wormell at the University of Sydney.
-It was a short research project focused primarily on the conceptual development of the technique. This repository is not a polished Python package, nor is the accompanying paper complete or peer-reviewed. It is simply a collection of exploratory ideas, many of which remain unrefined or incomplete. The code is provided as part of the development process and is not intended for reuse by others.
+> **Note:** This repository is a clone of the active working project, shared for the purposes of the Dennison scholarship. It reflects the state of the work at the time of submission and is not the finished product.
 
-This project was completed by myself (Daniel Bruwel), and Owen Marscgner, and Adrian Zhao under the supervision of Dr. Caroline Wormell.
+This project began as a summer research project in 2024/2025 at the University of Sydney, completed by Daniel Bruwel, Owen Marschner, and Adrian Zhao under the supervision of Dr. Caroline Wormell. That initial project focused primarily on the conceptual development of the technique for the linear tent map.
 
-**Working Project**: This work is being extended to general tent maps by Daniel and Caroline, and contains work in progress code related to this research. The preliminary report under `/paper` is for the fullfillments of the Dennison scholarship, and is in no way a finished product. The report produced in this extended work will be a more complete report.
+**Ongoing work:** Daniel and Caroline are now extending this work to general tent maps. This repository therefore contains both the original summer project code and work-in-progress code from the extension. The preliminary report under `papers/preliminary_report/` was prepared in fulfilment of the Dennison scholarship requirements; it is not a complete or peer-reviewed paper. A more complete write-up will be produced as part of the extended work.
+
+This repository is not a polished Python package. Much of the code is exploratory, some ideas remain unrefined or incomplete, and it is not intended for reuse by others.
 
 ## Project Overview
 
@@ -69,19 +70,23 @@ Poetry will automatically install the project into a virtual environment.
 ```
 chebyshev-hofbauer-resonances/
 │
-├── notebooks/                # Jupyter notebooks for exploration and results
-│   └── *.ipynb
+├── experiments/
+│   ├── notebooks/            # Jupyter notebooks for exploration and results
+│   │   ├── linear_tent_map/  # Original summer project
+│   │   └── general_tent_map/ # Ongoing extension (work in progress)
+│   └── scripts/
 │
-├── paper/                    # Draft paper, figures, and supplementary material
-│   ├── main.pdf
-│   └── ...
+├── papers/
+│   └── preliminary_report/   # Dennison scholarship report, figures
+│       ├── main.pdf
+│       └── ...
 │
 ├── src/
 │   └── chebyshev_hofbauer_resonances/
 │       ├── __init__.py
-│       └── ...
+│       ├── linear_tent_map/
+│       └── general_tent_map/
 │
-├── setup.py
 ├── pyproject.toml
 └── README.md
 ```
@@ -93,7 +98,7 @@ chebyshev-hofbauer-resonances/
 Import core functionality from the package:
 
 ```python
-from chebyshev_hofbauer_resonances.operator_approx import cheb_op_ap
+from chebyshev_hofbauer_resonances.linear_tent_map.operator_approx import cheb_op_ap
 ```
 
-More detailed examples can be found in the `notebooks/` directory.
+More detailed examples can be found in the `experiments/notebooks/` directory.
