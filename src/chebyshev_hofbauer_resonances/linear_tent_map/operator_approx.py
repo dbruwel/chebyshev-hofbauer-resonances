@@ -4,9 +4,9 @@ from scipy.fftpack import dct
 from scipy.special import chebyt
 
 
-def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1), depth=1):
+def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1)):
     """
-    Return the Chebyshev matrix approximation of an operator with a depth refinement.
+    Return the Chebyshev matrix approximation of an operator.
 
     Parameters
     ----------
@@ -20,13 +20,11 @@ def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1), depth=1):
         The initial domain of the operator. The default is (-1, 1).
     final_domain : tuple, optional
         The final domain of the operator. The default is (-1, 1).
-    depth : integer, optional
-        The depth of refinement for the approximation. Default is 1.
 
     Returns
     -------
     L_hat : ndarray
-        The matrix approximation of the operator, refined based on depth.
+        The matrix approximation of the operator.
     """
     assert N == K, "currently only works for K = N"
 
@@ -39,13 +37,6 @@ def cheb_op_ap(L, K, N, initial_domain=(-1, 1), final_domain=(-1, 1), depth=1):
 
     L_hat = dct(y, type=2, axis=1) / y.shape[1]
     L_hat[:, 0] = L_hat[:, 0] / 2
-
-    # Apply depth refinement (for example, running refinement iterations here)
-    if depth > 1:
-        for _ in range(depth - 1):
-            # Recalculate approximation by applying some refinement process (example: further smoothing)
-            L_hat = dct(L_hat, type=2, axis=1) / L_hat.shape[1]
-            L_hat[:, 0] = L_hat[:, 0] / 2
 
     return L_hat
 
