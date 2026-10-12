@@ -7,7 +7,7 @@ Old code repeated.
 """
 
 
-def generate_opp_approx(i, j, domains, generate, L, N, K, depth):
+def generate_opp_approx(i, j, domains, generate, L, N, K):
     """
     Takes the i, j element of the adjacency matrix and generates the operator approximation if generate is True.
     Otherwise returns the 0 matrix.
@@ -28,8 +28,6 @@ def generate_opp_approx(i, j, domains, generate, L, N, K, depth):
         The order of the Chebyshev nodes, taken to be the order of the DCT.
     N : integer
         The order of the Chebyshev polynomials to use.
-    depth : int
-        The depth of the approximation.
 
     Returns
     -------
@@ -41,14 +39,12 @@ def generate_opp_approx(i, j, domains, generate, L, N, K, depth):
         final_domain = domains[i]
         initial_domain = domains[j]
 
-        # Pass depth to cheb_op_ap
         L_hat_T = cheb_op_ap(
             L,
             K,
             N,
             initial_domain=initial_domain,
             final_domain=final_domain,
-            depth=depth,
         )
         L_hat = L_hat_T.T
         return L_hat
@@ -56,7 +52,7 @@ def generate_opp_approx(i, j, domains, generate, L, N, K, depth):
         return np.zeros((K, N))
 
 
-def create_partial_super_adjacency(adjacency_matrix, domains, L, N, K, depth):
+def create_partial_super_adjacency(adjacency_matrix, domains, L, N, K):
     """
     Create the super adjacency matrix from the adjacency matrix.
 
@@ -72,8 +68,6 @@ def create_partial_super_adjacency(adjacency_matrix, domains, L, N, K, depth):
         The order of the Chebyshev nodes, taken to be the order of the DCT.
     N : integer
         The order of the Chebyshev polynomials to use.
-    depth : int
-        The depth of the approximation.
 
     Returns
     -------
@@ -88,7 +82,7 @@ def create_partial_super_adjacency(adjacency_matrix, domains, L, N, K, depth):
         for j in range(adjacency_matrix.shape[1]):
             # Pass depth to generate_opp_approx
             super_adjacency[i, j] = generate_opp_approx(
-                i, j, domains, adjacency_matrix[i, j], L, N, K, depth
+                i, j, domains, adjacency_matrix[i, j], L, N, K
             )
 
     super_adjacency = np.block(super_adjacency.tolist())
